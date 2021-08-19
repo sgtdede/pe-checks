@@ -101,3 +101,8 @@ KERNEL32.dll.HeapReAlloc                                       [0x140013228]
 KERNEL32.dll.CloseHandle                                       [0x140013230]
 KERNEL32.dll.CreateFileW                                       [0x140013238]
 ```
+
+TODO
+- Add signature support
+- Add CAPA analysis
+- Add manifest/fileversion support
