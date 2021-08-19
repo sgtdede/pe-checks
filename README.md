@@ -1,6 +1,12 @@
 # pe-checks
 PE file informations (VirusTotal like) for malware development and AV evasion research 
 
+## Installation
+```
+pip install -r requirements.txt
+``` 
+
+## Usage exemple
 ```
 python pe-checks.py doggo.exe -v
 ---- PE Infos
