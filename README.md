@@ -105,4 +105,5 @@ KERNEL32.dll.CreateFileW                                       [0x140013238]
 TODO
 - Add signature support
 - Add CAPA analysis
+- Add ThreatChecks support
 - Add manifest/fileversion support
