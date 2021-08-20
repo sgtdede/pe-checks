@@ -106,10 +106,59 @@ KERNEL32.dll.HeapSize                                          [0x140013220]
 KERNEL32.dll.HeapReAlloc                                       [0x140013228]
 KERNEL32.dll.CloseHandle                                       [0x140013230]
 KERNEL32.dll.CreateFileW                                       [0x140013238]
+
+Capa analysis...
+loading : 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 603/603 [00:00<00:00, 1856.77 rules/s]
+matching: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 378/378 [00:14<00:00, 25.94 functions/s, skipped 0 library functions]
++------------------------+------------------------------------------------------------------------------------+
+| ATT&CK Tactic          | ATT&CK Technique                                                                   |
+|------------------------+------------------------------------------------------------------------------------|
+| DEFENSE EVASION        | Obfuscated Files or Information:: T1027                                            |
+|                        | Obfuscated Files or Information::Indicator Removal from Tools T1027.005            |
+| DISCOVERY              | File and Directory Discovery:: T1083                                               |
+|                        | System Information Discovery:: T1082                                               |
+| EXECUTION              | Command and Scripting Interpreter:: T1059                                          |
+|                        | Shared Modules:: T1129                                                             |
++------------------------+------------------------------------------------------------------------------------+
+
++-----------------------------+-------------------------------------------------------------------------------+
+| MBC Objective               | MBC Behavior                                                                  |
+|-----------------------------+-------------------------------------------------------------------------------|
+| ANTI-STATIC ANALYSIS        | Disassembler Evasion::Argument Obfuscation [B0012.001]                        |
+| DATA                        | Encode Data::XOR [C0026.002]                                                  |
+| DEFENSE EVASION             | Obfuscated Files or Information::Encoding-Standard Algorithm [E1027.m02]      |
+| FILE SYSTEM                 | Writes File:: [C0052]                                                         |
+| MEMORY                      | Allocate Memory:: [C0007]                                                     |
+| OPERATING SYSTEM            | Environment Variable::Set Variable [C0034.001]                                |
+| PROCESS                     | Allocate Thread Local Storage:: [C0040]                                       |
+|                             | Set Thread Local Storage Value:: [C0041]                                      |
+|                             | Terminate Process:: [C0018]                                                   |
++-----------------------------+-------------------------------------------------------------------------------+
+
++------------------------------------------------------+------------------------------------------------------+
+| CAPABILITY                                           | NAMESPACE                                            |
+|------------------------------------------------------+------------------------------------------------------|
+| contain obfuscated stackstrings                      | anti-analysis/obfuscation/string/stackstring         |
+| encode data using XOR (2 matches)                    | data-manipulation/encoding/xor                       |
+| accept command line arguments                        | host-interaction/cli                                 |
+| query environment variable                           | host-interaction/environment-variable                |
+| set environment variable                             | host-interaction/environment-variable                |
+| enumerate files via kernel32 functions               | host-interaction/file-system/files/list              |
+| get file size                                        | host-interaction/file-system/meta                    |
+| write file (5 matches)                               | host-interaction/file-system/write                   |
+| allocate thread local storage (2 matches)            | host-interaction/process                             |
+| get thread local storage value (2 matches)           | host-interaction/process                             |
+| set thread local storage value (2 matches)           | host-interaction/process                             |
+| allocate RWX memory (2 matches)                      | host-interaction/process/inject                      |
+| terminate process (3 matches)                        | host-interaction/process/terminate                   |
+| terminate process via fastfail (5 matches)           | host-interaction/process/terminate                   |
+| link function at runtime (2 matches)                 | linking/runtime-linking                              |
+| parse PE header (10 matches)                         | load-code/pe                                         |
++------------------------------------------------------+------------------------------------------------------+
+
 ```
 
 ## TODO
 - Add signature support
-- Add CAPA analysis
 - Add ThreatChecks support
 - Add manifest/fileversion support
