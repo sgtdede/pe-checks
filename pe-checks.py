@@ -2,6 +2,9 @@ import pefile
 import argparse
 import datetime
 import hashlib
+import os
+from helpers import get_default_root
+from capa_helpers import mainowar
 
 parser = argparse.ArgumentParser(description='PE informations')
 parser.add_argument(dest='filenames',metavar='filename', nargs='*')
@@ -57,8 +60,22 @@ def SingleFileInfo(filename):
             print()
 
 
+
+def CapaReport(filename):
+    capa_rules_path = os.path.join(get_default_root(), "capa-rules")
+    request = [filename]
+    request.append('-r')
+    request.append(capa_rules_path)
+    request.append('-s')
+    request.append(capa_rules_path)
+
+    mainowar(request)
+
 def main():
     for filename in args.filenames:
         SingleFileInfo(filename)
+        print()
+        print("Capa analysis...")
+        CapaReport(filename)
 
 main()
