@@ -2,7 +2,8 @@
 PE file informations (VirusTotal like) for malware development and AV evasion research 
 
 ## Installation
-#### *Note*: This script requires python3
+#### *Note*: 
+This script requires python3
 
 ### Check out the source code
 ```
