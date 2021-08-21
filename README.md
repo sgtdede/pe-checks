@@ -99,6 +99,11 @@ matching: 100%|█████████████████████�
 | parse PE header (10 matches)                         | load-code/pe                                         |
 +------------------------------------------------------+------------------------------------------------------+
 
+![image](https://user-images.githubusercontent.com/5963320/130305543-46264d95-63cc-4bd5-bfbd-eeac6f4d0146.png)
+![image](https://user-images.githubusercontent.com/5963320/130305528-035f8c5a-48e9-4652-82fc-b484330146d7.png)
+![image](https://user-images.githubusercontent.com/5963320/130305483-aadc7dc5-4995-4411-a24f-1768c4a3440d.png)
+
+
 ```
 
 ## TODO
