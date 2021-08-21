@@ -104,6 +104,22 @@ matching: 100%|█████████████████████�
 ![image](https://user-images.githubusercontent.com/5963320/130305528-035f8c5a-48e9-4652-82fc-b484330146d7.png)
 ![image](https://user-images.githubusercontent.com/5963320/130305483-aadc7dc5-4995-4411-a24f-1768c4a3440d.png)
 
+## Help
+```
+python pe-checks.py -h
+usage: pe-checks.py [-h] [-s] [-v] [filename ...]
+
+PE informations
+
+positional arguments:
+  filename
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -s, --scan  perform a defender engine scan (WARNING:before lauching that scan you need to adjust Defender settings to: Defender ON, Submission OFF)
+  -v          verbose mode
+```
+
 ## TODO
 - Add signature support
 - Add ThreatChecks support
