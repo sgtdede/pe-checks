@@ -3,11 +3,14 @@ import argparse
 import datetime
 import hashlib
 import os
+from pathlib import Path
 from helpers import get_default_root
 from capa_helpers import mainowar
+from pydefendercheck import DefenderScanner
 
 parser = argparse.ArgumentParser(description='PE informations')
 parser.add_argument(dest='filenames',metavar='filename', nargs='*')
+parser.add_argument('-s', '--scan', dest='scan', action='store_true', help='perform a defender engine scan (WARNING:before lauching that scan you need to adjust Defender settings to: Defender ON, Submission OFF)')
 parser.add_argument('-v', dest='verbose', action='store_true', help='verbose mode')
 args = parser.parse_args()
 
@@ -60,10 +63,11 @@ def SingleFileInfo(filename):
             print()
 
 
-
 def CapaReport(filename):
     capa_rules_path = os.path.join(get_default_root(), "capa-rules")
     request = [filename]
+    if args.verbose:
+        request.append('-v')
     request.append('-r')
     request.append(capa_rules_path)
     request.append('-s')
@@ -73,9 +77,15 @@ def CapaReport(filename):
 
 def main():
     for filename in args.filenames:
+        print(f'{"==================================================":<50} {"File informations":^20} {"==================================================":>50}')
         SingleFileInfo(filename)
         print()
-        print("Capa analysis...")
+        print(f'{"==================================================":<50} {"Capa analysis":^20} {"==================================================":>50}')
         CapaReport(filename)
+        if args.scan:
+            print()
+            print(f'{"==================================================":<50} {"Defender scan":^20} {"==================================================":>50}')
+            scanner = DefenderScanner(Path(filename))
+            print(scanner.result)
 
 main()
