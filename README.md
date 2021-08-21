@@ -8,6 +8,7 @@ This script requires python3
 ### Check out the source code
 ```
 git clone --recurse-submodules https://github.com/sgtdede/pe-checks.git
+cd pe-checks
 ``` 
 ### Install the python dependencies
 ```
