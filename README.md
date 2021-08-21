@@ -2,6 +2,14 @@
 PE file informations (VirusTotal like) for malware development and AV evasion research 
 
 ## Installation
+#### *Note*:
+This script requires python3
+
+### Check out the source code
+```
+git clone --recurse-submodules https://github.com/sgtdede/pe-checks.git
+``` 
+### Install the python dependencies
 ```
 pip install -r requirements.txt
 ``` 
