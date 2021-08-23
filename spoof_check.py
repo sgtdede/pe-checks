@@ -479,15 +479,13 @@ def scheck_it(file_path):
     try:
         pe = pefile.PE(name=file_path)
     except pefile.PEFormatError:
-        if args.verbose:
-            print("{}\n\tUnable to parse: PE header".format(file_name))
+        print("{}\n\tUnable to parse: PE header".format(file_name))
         return -1
 
     # Attempt to parse Rich header:
     rich_header = pe.parse_rich_header()
     if rich_header is None:
-        if args.verbose:
-            print("{}\n\tUnable to parse: Rich header".format(file_name))
+        print("{}\n\tUnable to parse: Rich header".format(file_name))
         return -1
 
     # Perform tests
