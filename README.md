@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ## Help
 ```
 python pe-checks.py -h
-usage: pe-checks.py [-h] [-s] [-v] [filename ...]
+usage: pe-checks.py [-h] [-a] [-c] [-s] [-v] [filename ...]
 
 PE informations
 
@@ -27,6 +27,8 @@ positional arguments:
 
 optional arguments:
   -h, --help  show this help message and exit
+  -a, --all   perform all modules
+  -c, --capa  perform a CAPA scan
   -s, --scan  perform a defender engine scan (WARNING:before lauching that scan you need to adjust Defender settings to: Defender ON, Submission OFF)
   -v          verbose mode
 ```
@@ -40,8 +42,8 @@ python pe-checks.py doggo.exe -v -s
 ![image](https://user-images.githubusercontent.com/5963320/130305483-aadc7dc5-4995-4411-a24f-1768c4a3440d.png)
 
 ## Thanks to
-This script is powered by pefile, CAPA, RichPE, PyDefenderCheck
-https://github.com/RichHeaderResearch/RichPE
+This script is powered by [pefile](https://github.com/erocarrera/pefile), [CAPA](https://github.com/fireeye/capa), [RichPE](https://github.com/RichHeaderResearch/RichPE), [PyDefenderCheck](https://gist.github.com/daddycocoaman/108d807e89a0f9731304bc848fa219f0)
+
 
 ## TODO
 - Add signature support
