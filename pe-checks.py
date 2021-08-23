@@ -7,9 +7,13 @@ from pathlib import Path
 from helpers import get_default_root
 from capa_helpers import mainowar
 from pydefendercheck import DefenderScanner
+from rich import rich_it
+from spoof_check import scheck_it
 
 parser = argparse.ArgumentParser(description='PE informations')
 parser.add_argument(dest='filenames',metavar='filename', nargs='*')
+parser.add_argument('-a', '--all', dest='all', action='store_true', help='perform all modules')
+parser.add_argument('-c', '--capa', dest='capa', action='store_true', help='perform a CAPA scan')
 parser.add_argument('-s', '--scan', dest='scan', action='store_true', help='perform a defender engine scan (WARNING:before lauching that scan you need to adjust Defender settings to: Defender ON, Submission OFF)')
 parser.add_argument('-v', dest='verbose', action='store_true', help='verbose mode')
 args = parser.parse_args()
@@ -30,6 +34,8 @@ def SingleFileInfo(filename):
     print(f'{"Magic":<15} {pe.DOS_HEADER.e_magic:}')
     print(f'{"Magic2":<15} {pe.OPTIONAL_HEADER.Magic:}')
     print(f'{"Imphash":<15} {pe.get_imphash()}')
+    print(f'{"Md5":<15} {hashlib.md5(raw).hexdigest()}')
+    print(f'{"Sha1":<15} {hashlib.sha1(raw).hexdigest()}')
     print(f'{"Sha256":<15} {hashlib.sha256(raw).hexdigest()}')
     print(f'{"Entropy":<15} {pe.sections[0].entropy_H(raw)} (Min=0.0, Max=8.0)')
     print(f'{"File Size":<15} {pe.OPTIONAL_HEADER.SizeOfImage/1000} KB ({pe.OPTIONAL_HEADER.SizeOfImage} bytes)')
@@ -53,6 +59,12 @@ def SingleFileInfo(filename):
         md5 = section.get_hash_md5()
         entropy = section.get_entropy()
         print(f"{name:<8} {virtual_address:<17} {virtual_size:<14} {raw_size:<10} {md5:<35} {entropy}")
+
+    print()
+    print(f"-- Rich PE")
+    rich_it(filename)
+    print()
+    scheck_it(filename)
 
     if args.verbose:
         print()
@@ -79,10 +91,11 @@ def main():
     for filename in args.filenames:
         print(f'{"==================================================":<50} {"File informations":^20} {"==================================================":>50}')
         SingleFileInfo(filename)
-        print()
-        print(f'{"==================================================":<50} {"Capa analysis":^20} {"==================================================":>50}')
-        CapaReport(filename)
-        if args.scan:
+        if args.capa or args.all:
+            print()
+            print(f'{"==================================================":<50} {"Capa analysis":^20} {"==================================================":>50}')
+            CapaReport(filename)
+        if args.scan or args.all:
             print()
             print(f'{"==================================================":<50} {"Defender scan":^20} {"==================================================":>50}')
             scanner = DefenderScanner(Path(filename))
