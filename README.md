@@ -1,19 +1,19 @@
 # pe-checks
-PE file informations (VirusTotal like) for malware development and AV evasion research 
+PE file informations (VirusTotal like) for malware development and AV evasion research
 
 ## Installation
-#### *Note*: 
+#### *Note*:
 This script requires python3
 
 ### Check out the source code
 ```
 git clone --recurse-submodules https://github.com/sgtdede/pe-checks.git
 cd pe-checks
-``` 
+```
 ### Install the python dependencies
 ```
 pip install -r requirements.txt
-``` 
+```
 
 ## Help
 ```
@@ -42,7 +42,7 @@ python pe-checks.py doggo.exe -v -s -c
 ![image](https://user-images.githubusercontent.com/5963320/130305483-aadc7dc5-4995-4411-a24f-1768c4a3440d.png)
 
 ## Thanks to
-This script is powered by [pefile](https://github.com/erocarrera/pefile), [capa](https://github.com/fireeye/capa), [RichPE](https://github.com/RichHeaderResearch/RichPE) and [PyDefenderCheck](https://gist.github.com/daddycocoaman/108d807e89a0f9731304bc848fa219f0)
+This script is powered by [pefile](https://github.com/erocarrera/pefile), [capa](https://github.com/fireeye/capa), [RichPE](https://github.com/RichHeaderResearch/RichPE), [yara-python](https://github.com/VirusTotal/yara-python), [valhallaAPI](https://github.com/NextronSystems/valhallaAPI) and [PyDefenderCheck](https://gist.github.com/daddycocoaman/108d807e89a0f9731304bc848fa219f0)
 
 ## TODO
 - Add signature support

@@ -9,12 +9,14 @@ from capa_helpers import mainowar
 from pydefendercheck import DefenderScanner
 from rich import rich_it
 from spoof_check import scheck_it
+from yara_scan import valhalla_scan
 
 parser = argparse.ArgumentParser(description='PE informations')
 parser.add_argument(dest='filenames',metavar='filename', nargs='*')
 parser.add_argument('-a', '--all', dest='all', action='store_true', help='perform all modules')
 parser.add_argument('-c', '--capa', dest='capa', action='store_true', help='perform a CAPA scan')
 parser.add_argument('-s', '--scan', dest='scan', action='store_true', help='perform a defender engine scan (WARNING:before lauching that scan you need to adjust Defender settings to: Defender ON, Submission OFF)')
+parser.add_argument('-y', '--yara', dest='yara', action='store_true', help='perform a yara scan using Valhalla\'s free rules')
 parser.add_argument('-v', dest='verbose', action='store_true', help='verbose mode')
 args = parser.parse_args()
 
@@ -89,16 +91,21 @@ def CapaReport(filename):
 
 def main():
     for filename in args.filenames:
-        print(f'{"==================================================":<50} {"File informations":^20} {"==================================================":>50}')
+        print(f'{"==================================================":<50} {"File informations":^30} {"==================================================":>50}')
         SingleFileInfo(filename)
         if args.capa or args.all:
             print()
-            print(f'{"==================================================":<50} {"Capa analysis":^20} {"==================================================":>50}')
+            print(f'{"==================================================":<50} {"Capa analysis":^30} {"==================================================":>50}')
             CapaReport(filename)
         if args.scan or args.all:
             print()
-            print(f'{"==================================================":<50} {"Defender scan":^20} {"==================================================":>50}')
+            print(f'{"==================================================":<50} {"Defender scan":^30} {"==================================================":>50}')
             scanner = DefenderScanner(Path(filename))
             print(scanner.result)
+        if args.yara or args.all:
+            print()
+            print(f'{"==================================================":<50} {"Yara (Valhalla rules) scan":^30} {"==================================================":>50}')
+            valhalla_scan(filename)
+
 
 main()
