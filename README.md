@@ -30,16 +30,19 @@ optional arguments:
   -a, --all   perform all modules
   -c, --capa  perform a CAPA scan
   -s, --scan  perform a defender engine scan (WARNING:before lauching that scan you need to adjust Defender settings to: Defender ON, Submission OFF)
+  -y, --yara  perform a yara scan using Valhalla's free rules  
   -v          verbose mode
 ```
 
 ## Usage exemple
 ```
-python pe-checks.py doggo.exe -v -s -c
+python pe-checks.py doggo.exe -v -s -c -y
 ```
 ![image](https://user-images.githubusercontent.com/5963320/130526489-5f79d041-e1c0-404e-be2a-bdf174a38a5b.png)
 ![image](https://user-images.githubusercontent.com/5963320/130305528-035f8c5a-48e9-4652-82fc-b484330146d7.png)
 ![image](https://user-images.githubusercontent.com/5963320/130305483-aadc7dc5-4995-4411-a24f-1768c4a3440d.png)
+![image](https://user-images.githubusercontent.com/5963320/130877004-47a5bfd8-f445-44c7-b6cd-e748b23e3804.png)
+
 
 ## Thanks to
 This script is powered by [pefile](https://github.com/erocarrera/pefile), [capa](https://github.com/fireeye/capa), [RichPE](https://github.com/RichHeaderResearch/RichPE), [yara-python](https://github.com/VirusTotal/yara-python), [valhallaAPI](https://github.com/NextronSystems/valhallaAPI) and [PyDefenderCheck](https://gist.github.com/daddycocoaman/108d807e89a0f9731304bc848fa219f0)
